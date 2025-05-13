@@ -1,0 +1,90 @@
+{% extends 'starter.html' %}
+{% load static %}
+{% block body %}
+
+
+    <!-- HOME -->
+    <section class="section-hero overlay inner-page bg-image" style="background-image: url('images/hero_1.jpg');" id="home-section">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-7">
+            <h1 class="text-white font-weight-bold">Register</h1>
+            <div class="custom-breadcrumbs">
+              <a href="#">Home</a> <span class="mx-2 slash">/</span>
+              <span class="text-white"><strong>Log In</strong></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="site-section">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6 mb-5">
+            <h2 class="mb-4">Sign Up To JobBoard</h2>
+            <center>
+              {% if msg %}
+                  <h4 style="color: red;">{{msg}}</h4>
+              {% endif %}
+            </center>
+            <form action="{% url 'registeruser' %}" method="POST" class="p-4 border rounded">
+              {% csrf_token %}
+ 
+              <div class="row form-group">
+                <center>
+                  <div>
+                    <label for="">Select Role <span class="text-danger">*</span></label>
+                    <select name="role" id="">
+                      <option disabled>======Select Role======</option>
+                      <option>Candidate</option>
+                      <option>Company</option>
+                    </select>
+                  </div>
+                </center>
+                <div class="col-md-12 mb-3 mb-md-0">
+                  <label class="text-black" for="fname">Fistname</label>
+                  <input type="text" id="fname" name="fname" class="form-control" placeholder="Firstname" required>
+                </div>
+              </div>
+              <div class="row form-group">
+                <div class="col-md-12 mb-3 mb-md-0">
+                  <label class="text-black" for="lname">Lastname</label>
+                  <input type="text" id="lname" name="lname" class="form-control" placeholder="Lastname" required>
+                </div>
+              </div>
+              <div class="row form-group">
+                <div class="col-md-12 mb-3 mb-md-0">
+                  <label class="text-black" for="email">Email</label>
+                  <input type="email" id="email" name="email" class="form-control" placeholder="Email address" required>
+                </div>
+              </div>
+              <div class="row form-group">
+                <div class="col-md-12 mb-3 mb-md-0">
+                  <label class="text-black" for="fname">Password</label>
+                  <input type="password" id="fname" name="password" class="form-control" placeholder="Password" required>
+                </div>
+              </div>
+              <div class="row form-group mb-4">
+                <div class="col-md-12 mb-3 mb-md-0">
+                  <label class="text-black" for="fname">Re-Type Password</label>
+                  <input type="password" id="cpassword" name="cpassword" class="form-control" placeholder="Re-type Password" required>
+                </div>
+              </div>
+
+              <div class="row form-group">
+                <div class="col-md-12">
+                  <input type="submit" value="Sign Up" class="btn px-4 btn-primary text-white"><br><br>
+                  <a href="{% url 'login' %}"  class="btn px-4 btn-primary text-white">Have an Account?</a>
+                </div>
+              </div>
+
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  
+{% endblock %}    
+    

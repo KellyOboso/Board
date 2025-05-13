@@ -1,0 +1,261 @@
+{% extends 'starter.html' %}
+{% load static %}
+{% block body %}
+
+    <!-- HOME -->
+    <section class="section-hero overlay inner-page bg-image" style="background-image: url('static/images/hero_1.jpg');" id="home-section">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-7">
+            <h1 class="text-white font-weight-bold">Profile</h1>
+            <div class="custom-breadcrumbs">
+              <a href="#">Home</a> <span class="mx-2 slash">/</span>
+              <a href="#">Job</a> <span class="mx-2 slash">/</span>
+              <span class="text-white"><strong>Candidate Profile</strong></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="site-section">
+      <div class="container">
+
+        <div class="row align-items-center mb-5">
+          <div class="col-lg-8 mb-4 mb-lg-0">
+            <div class="d-flex align-items-center">
+              <div>
+                <h2>Candidate Profile</h2>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="row">
+              <div class="col-6">
+                <a href="#" class="btn btn-block btn-light btn-md"><span class="icon-open_in_new mr-2"></span>Preview</a>
+              </div>
+              <div class="col-6">
+                <a href="#" class="btn btn-block btn-primary btn-md">Save Job</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row mb-5">
+          <div class="col-lg-12">
+            {% if msg %}
+            <div class="alert alert-info">
+              {{ msg }}
+            </div>
+            {% endif %}
+            <form class="p-4 p-md-5 border rounded" action="{% url 'updateprofile' pk %}" method="post" enctype="multipart/form-data">
+              {% csrf_token %}
+              <h3 class="text-black mb-5 border-bottom pb-2">Update Your Profile</h3>
+              
+              <!-- Debug info -->
+              {% if debug %}
+              <div class="alert alert-warning">
+                <p>Debug Info:</p>
+                <p>User ID: {{ user.id }}</p>
+                <p>Candidate ID: {{ can.id }}</p>
+              </div>
+              {% endif %}
+              
+              <div class="form-group">
+                <label for="fname">Firstname</label>
+                <input type="text" name="fname" class="form-control" id="firstname" value="{{can.firstname}}" required>
+              </div>
+              <div class="form-group">
+                <label for="lname">Lastname</label>
+                <input type="text" class="form-control" name="lastname" id="lastname" value="{{can.lastname}}" required>
+              </div>
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" name="email" id="email" value="{{user.email}}" required>
+              </div>
+              <div class="form-group">
+                <label class="form-group" for="">Job Type <span class="text-danger">*</span></label>
+                  <select name="job_type" class="form-control" id="job_type" required>
+                    <option disabled>======Select One======</option>
+                    <option {% if can.job_type == 'Full-Time' %}selected{% endif %}>Full-Time</option>
+                    <option {% if can.job_type == 'Part-Time' %}selected{% endif %}>Part-Time</option>
+                  </select>
+              </div>
+              <div class="form-group">
+                <label for="" class="form-group">Job Category <span class="text-danger">*</span></label>
+                  <select name="job_category" class="form-control" id="job_category" required>
+                    <option disabled>======Select One======</option>
+                    <option {% if can.job_category == 'IT' %}selected{% endif %}>IT</option>
+                    <option {% if can.job_category == 'Medicine' %}selected{% endif %}>Medicine</option>
+                    <option {% if can.job_category == 'Law' %}selected{% endif %}>Law</option>
+                    <option {% if can.job_category == 'Education' %}selected{% endif %}>Education</option>
+                  </select>
+              </div>
+              <div class="form-group">
+                <label for="city">City</label>
+                <input type="text" class="form-control" name="city" id="city" value="{{can.city}}" required>
+              </div>
+              <div class="form-group">
+                <label for="country">Country</label>
+                <input type="text" class="form-control" name="country" id="country" value="{{can.country}}" required>
+              </div>
+              <div class="form-group">
+                <label for="min_salary">Minimum Salary</label>
+                <input type="number" class="form-control" name="min_salary" id="min_salary" value="{{can.min_salary}}" required>
+              </div>
+              <div class="form-group">
+                <label for="max_salary">Maximum Salary</label>
+                <input type="number" class="form-control" name="max_salary" id="max_salary" value="{{can.max_salary}}" required>
+              </div>
+              <div class="form-group">
+                <label for="highest_education">Highest Education</label>
+                <input type="text" class="form-control" name="highest_education" id="highest_education" value="{{can.highest_education}}" required>
+              </div>
+              <div class="form-group">
+                <label for="experience">Experience</label>
+                <input type="text" class="form-control" name="experience" id="experience" value="{{can.experience}}" required>
+              </div>
+              <div class="form-group">
+                <label for="website">Website</label>
+                <input type="text" class="form-control" name="website" id="website" value="{{can.website}}">
+              </div>
+              
+              <div class="form-group">
+                <label for="shift" class="form-group"> Shift <span class="text-danger">*</span></label>
+                  <select name="shift" class="form-control" id="shift" required>
+                    <option disabled>======Select One======</option>
+                    <option {% if can.shift == 'Day Shift' %}selected{% endif %}>Day Shift</option>
+                    <option {% if can.shift == 'Night Shift' %}selected{% endif %}>Night Shift</option>
+                    <option {% if can.shift == 'Other' %}selected{% endif %}>Other</option>
+                  </select>
+              </div>
+
+              <div class="form-group">
+                <label for="job_description">Job Description</label>
+                <input type="text" class="form-control" name="job_description" id="job_description" value="{{can.job_description}}" required>
+              </div>
+
+              <div class="form-group">
+                <label for="contact">Mobile Number</label>
+                <input type="number" class="form-control" name="contact" id="contact" value="{{can.contact}}" required>
+              </div>
+
+              <div class="form-group">
+                <label for="gender" class="form-group"> Gender <span class="text-danger">*</span></label>
+                  <select name="gender" class="form-control" id="gender" required>
+                    <option disabled>======Select One======</option>
+                    <option {% if can.gender == 'Male' %}selected{% endif %}>Male</option>
+                    <option {% if can.gender == 'Female' %}selected{% endif %}>Female</option>
+                    <option {% if can.gender == 'Other' %}selected{% endif %}>Other</option>
+                    <option {% if can.gender == 'Rather Not Say' %}selected{% endif %}>Rather Not Say</option>
+                  </select>
+              </div>
+
+              <div class="form-group" style="display: flex; align-items: center;">
+                <div>
+                  <label for="profile_pic">Upload Logo</label> <br>
+                  <label class="btn btn-primary btn-md btn-file" style="background-color: #97c41a; color: #fff;">
+                    Browse File
+                    <input type="file" name="profile_pic" id="profile_pic" hidden onchange="showFileNameAndPreview(this)">
+                  </label>
+                  <span id="file-name" style="margin-left: 10px;"></span>
+                </div>
+                <div id="img-preview" style="margin-left: 30px;">
+                  {% if can.profile_pic %}
+                    <img id="current-profile-pic" src="{{ can.profile_pic.url }}" alt="Current Profile Picture"
+                         style="width: 60px; height: 60px; object-fit: cover; border-radius: 12px; border: 1.5px solid #97c41a;" />
+                  {% endif %}
+                </div>
+              </div>
+              
+              <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" name="password" id="password" required>
+              </div>         
+              <div class="form-group">
+                <label for="cpassword">Re-Type Password</label>
+                <input type="password" class="form-control" name="cpassword" id="cpassword" required>
+                <small id="password-match-message" style="color: red;"></small>
+              </div>         
+            
+              <div>
+                <input type="submit" class="btn btn-primary btn-md btn-file" value="Save Job">
+              </div>
+
+            </form>
+          </div>
+
+         
+        </div>
+        <div class="row align-items-center mb-5">
+          
+          <div class="col-lg-4 ml-auto">
+            <div class="row">
+              <div class="col-6">
+                <a href="#" class="btn btn-block btn-light btn-md"><span class="icon-open_in_new mr-2"></span>Preview</a>
+              </div>
+              <div class="col-6">
+                <a href="#" class="btn btn-block btn-primary btn-md">Save Job</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    
+    
+{% endblock %}
+
+<script>
+// Set the current profile picture URL from Django context
+var currentProfilePicUrl = "{% if can.profile_pic %}{{ can.profile_pic.url }}{% else %}{% endif %}";
+
+function showFileNameAndPreview(input) {
+    const fileNameSpan = document.getElementById('file-name');
+    const imgPreviewDiv = document.getElementById('img-preview');
+    if (input.files && input.files[0]) {
+        fileNameSpan.textContent = input.files[0].name;
+
+        // Show image preview
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            imgPreviewDiv.innerHTML = '<img src="' + e.target.result + '" alt="Preview" style="width:60px; height:60px; object-fit:cover; border-radius:12px; border:1.5px solid #97c41a;" />';
+        }
+        reader.readAsDataURL(input.files[0]);
+    } else {
+        fileNameSpan.textContent = '';
+        // Restore the current profile picture if it exists
+        if (currentProfilePicUrl) {
+            imgPreviewDiv.innerHTML = '<img id="current-profile-pic" src="' + currentProfilePicUrl + '" alt="Current Profile Picture" style="width:60px; height:60px; object-fit:cover; border-radius:12px; border:1.5px solid #97c41a;" />';
+        } else {
+            imgPreviewDiv.innerHTML = '';
+        }
+    }
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    var password = document.getElementById('password');
+    var cpassword = document.getElementById('cpassword');
+    var message = document.getElementById('password-match-message');
+
+    function checkPasswordMatch() {
+        if (password.value && cpassword.value) {
+            if (password.value !== cpassword.value) {
+                message.textContent = "Passwords do not match";
+            } else {
+                message.textContent = "";
+            }
+        } else {
+            message.textContent = "";
+        }
+    }
+
+    password.addEventListener('input', checkPasswordMatch);
+    cpassword.addEventListener('input', checkPasswordMatch);
+
+    // On page load, show the current profile picture if it exists
+    if (!document.getElementById('profile_pic').value && currentProfilePicUrl) {
+        document.getElementById('img-preview').innerHTML = '<img id="current-profile-pic" src="' + currentProfilePicUrl + '" alt="Current Profile Picture" style="width:60px; height:60px; object-fit:cover; border-radius:12px; border:1.5px solid #97c41a;" />';
+    }
+});
+</script>

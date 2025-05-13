@@ -1,0 +1,115 @@
+{% extends 'starter.html' %}
+{% load static %}
+{% block body %}
+
+    <!-- HOME -->
+    <section class="section-hero overlay inner-page bg-image" style="background-image: url('static/images/hero_1.jpg');" id="home-section">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-7">
+            <h1 class="text-white font-weight-bold">Post A Job</h1>
+            <div class="custom-breadcrumbs">
+              <a href="#">Home</a> <span class="mx-2 slash">/</span>
+              <a href="#">Job</a> <span class="mx-2 slash">/</span>
+              <span class="text-white"><strong>Post a Job</strong></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    
+    <section class="site-section">
+      <div class="container">
+
+        <div class="row align-items-center mb-5">
+          <div class="col-lg-8 mb-4 mb-lg-0">
+            <div class="d-flex align-items-center">
+              <div>
+                <h2>Post A Job</h2>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="row">
+              <div class="col-6">
+                <a href="#" class="btn btn-block btn-light btn-md"><span class="icon-open_in_new mr-2"></span>Preview</a>
+              </div>
+              <div class="col-6">
+                <a href="#" class="btn btn-block btn-primary btn-md">Save Job</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row mb-5">
+          <div class="col-lg-12">
+            <form class="p-4 p-md-5 border rounded" method="post">
+              <h3 class="text-black mb-5 border-bottom pb-2">Job Details</h3>
+              <div class="form-group">
+                <label for="fname">Firstname</label>
+                <input type="text" name="fname" class="form-control" id="fname" placeholder="Firstname" required>
+              </div>
+              <div class="form-group">
+                <label for="lname">Lastname</label>
+                <input type="text" class="form-control" name="lname" id="lname" placeholder="Lastname" required>
+              </div>
+              <div class="form-group">
+                <label for="companyname">Company Name</label>
+                <input type="text" class="form-control" name="companyname" id="companyname" placeholder="Company Name" required>
+              </div>
+              
+              <div class="form-group">
+                <label for="state">State</label>
+                <input type="text" class="form-control" name="state" id="state" placeholder="State" required>
+              </div>
+              
+              <div class="form-group">
+                <label for="city">City</label>
+                <input type="text" class="form-control" name="city" id="city" placeholder="City" required>
+              </div>
+
+              <div class="form-group">
+                <label for="contact">Contact</label>
+                <input type="text" class="form-control" name="contact" id="contact" placeholder="Contact" required>
+              </div>
+
+              <div class="form-group">
+                <label for="address">Address</label>
+                <input type="text" class="form-control" name="address" id="address" placeholder="Address" required>
+              </div>
+
+              <div class="form-group">
+                <label for="company-website-tw d-block">Upload Logo</label> <br>
+                <label class="btn btn-primary btn-md btn-file">
+                  Browse File<input type="file" hidden required>
+                </label>
+              </div>
+
+              <div>
+                <input type="submit" class="btn btn-primary btn-md btn-file" value="Save Job">
+              </div>
+
+            </form>
+          </div>
+
+         
+        </div>
+        <div class="row align-items-center mb-5">
+          
+          <div class="col-lg-4 ml-auto">
+            <div class="row">
+              <div class="col-6">
+                <a href="#" class="btn btn-block btn-light btn-md"><span class="icon-open_in_new mr-2"></span>Preview</a>
+              </div>
+              <div class="col-6">
+                <a href="#" class="btn btn-block btn-primary btn-md">Save Job</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    
+    
+{% endblock %}
